@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import {IBM_Plex_Sans} from 'next/font/google'
-import { ClerkProvider, SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { IBM_Plex_Sans } from 'next/font/google';
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark, neobrutalism, shadesOfPurple } from "@clerk/themes";
 
 export const metadata: Metadata = {
   title: "Vivid AI",
@@ -15,14 +16,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-    <html lang="en">
-      <body>
-        {
-          children
-        }
-      </body>
-    </html>
-  </ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: shadesOfPurple,
+        variables: { colorPrimary: 'red' },
+        layout: {
+          socialButtonsPlacement: 'bottom',
+          socialButtonsVariant: 'iconButton',
+          termsPageUrl: 'https://clerk.com/terms',
+        },
+        signIn: {
+          baseTheme: neobrutalism,
+          variables: { colorPrimary: 'green' },
+        },
+      }}
+    >
+      <html lang="en">
+        <body>
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
