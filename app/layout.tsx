@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import {IBM_Plex_Sans} from 'next/font/google'
+import { ClerkProvider, SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "Vivid AI",
@@ -14,12 +15,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en">
-      <body
-        className={`antialiased`}
-      >
-        {children}
+      <body>
+        {
+          children
+        }
       </body>
     </html>
+  </ClerkProvider>
   );
 }
