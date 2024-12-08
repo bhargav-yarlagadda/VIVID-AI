@@ -12,24 +12,30 @@ const MobileNav = () => {
 
   return (
     <header className=" p-4 bg-white h-screen shadow-lg dark:bg-gray-900">
-
-      <div className="flex justify-center items-center mb-4">
+      <div className={`flex ${isMenuOpen?"justify-end":"justify-center"} items-center mb-4`}>
         <Image
           src="/assets/icons/menu.svg"
           alt="menu"
           width={32}
           height={32}
-          className="cursor-pointer"
+         className="cursor-pointer"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         />
       </div>
-            <div className="w-full flex  justify-center mb-4">
-              <UserButton />
-            </div>
-      {isMenuOpen && (
-        <nav className="flex flex-col items-center gap-6">
-          <SignedIn>
+      <div className="w-full flex  justify-center mb-4">
+        <div
+        
+        className={`cursor-pointer transition-opacity duration-300 ${
+            isMenuOpen ? "opacity-0" : "opacity-100"
+          }`}
+        >
 
+        <UserButton />
+        </div>
+      </div>
+      {isMenuOpen && (
+        <nav className="flex transition-all duration-100 ease-out flex-col items-center gap-6">
+          <SignedIn>
             <ul className="w-full flex flex-col items-center gap-4">
               {navLinks.map((link) => {
                 const isActive = link.route === pathname;
