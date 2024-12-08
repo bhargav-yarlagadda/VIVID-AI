@@ -1,9 +1,10 @@
 import React from "react"
-import Sidebar from "@/components/shared/Sidebar"
+import MobileNav from "@/components/shared/MobileNav"
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="flex">
-      <Sidebar/>
+   
+      <MobileNav/>
       <div className="">
         <div className="px-8 py-4">
           {children}
